@@ -1,0 +1,36 @@
+%feature("docstring") OTSLICED::SlicedInverseRegression
+"SlicedInverseRegression class.
+
+Examples
+--------
+>>> import otsliced
+>>> a = otsliced.SlicedInverseRegression()
+
+Notes
+-----
+Template module class."
+
+// ---------------------------------------------------------------------
+
+%feature("docstring") OTSLICED::SlicedInverseRegression::square
+"Square of a point.
+
+Parameters
+----------
+point : sequence of float 
+    Input point
+
+Returns
+-------
+square : :py:class:`openturns.Point`
+    Square of point
+                  
+Examples
+--------
+>>> import openturns as ot
+>>> import otsliced
+>>> a = otsliced.SlicedInverseRegression()
+>>> point = ot.Point([1.0, 2.0, 3.0])
+>>> a.square(point)
+class=Point name=Unnamed dimension=3 values=[1,4,9]"
+

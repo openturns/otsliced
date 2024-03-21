@@ -1,0 +1,44 @@
+#                                               -*- cmake -*-
+#
+#  otslicedConfig.cmake(.in)
+#
+#  Find otsliced includes and libraries
+#
+#  Copyright 2005-2024 Airbus-EDF-IMACS-ONERA-Phimeca
+#
+
+# Use the following variables to compile and link against otsliced:
+#  OTSLICED_FOUND          - True if otsliced was found on your system
+#  OTSLICED_DEFINITIONS    - Definitions needed to build with otsliced
+#  OTSLICED_INCLUDE_DIRS   - List of directories where otsliced' header file are
+#  OTSLICED_LIBRARY        - Library name
+#  OTSLICED_LIBRARIES      - List of libraries to link against
+#  OTSLICED_LIBRARY_DIRS   - List of directories containing otsliced' libraries
+#  OTSLICED_ROOT_DIR       - The base directory of otsliced
+#  OTSLICED_VERSION_STRING - A human-readable string containing the version
+#  OTSLICED_VERSION_MAJOR  - The major version of otsliced
+#  OTSLICED_VERSION_MINOR  - The minor version of otsliced
+#  OTSLICED_VERSION_PATCH  - The patch version of otsliced
+
+@PACKAGE_INIT@
+
+set ( OTSLICED_FOUND 1 )
+
+set ( OTSLICED_DEFINITIONS  "@OTSLICED_DEFINITIONS@" )
+set_and_check (OTSLICED_INCLUDE_DIR  "@PACKAGE_OTSLICED_INCLUDE_DIR@")
+set ( OTSLICED_INCLUDE_DIRS "@PACKAGE_OTSLICED_INCLUDE_DIRS@" )
+set_and_check (OTSLICED_LIBRARY      "@OTSLICED_LIBRARY@")
+set ( OTSLICED_LIBRARIES    "@PACKAGE_OTSLICED_LIBRARIES@" )
+set ( OTSLICED_LIBRARY_DIRS "@PACKAGE_OTSLICED_LIBRARY_DIRS@" )
+set_and_check (OTSLICED_ROOT_DIR     "@PACKAGE_OTSLICED_ROOT_DIR@")
+
+set ( OTSLICED_VERSION_STRING "@OTSLICED_VERSION_STRING@" )
+set ( OTSLICED_VERSION_MAJOR  "@OTSLICED_VERSION_MAJOR@" )
+set ( OTSLICED_VERSION_MINOR  "@OTSLICED_VERSION_MINOR@" )
+set ( OTSLICED_VERSION_PATCH  "@OTSLICED_VERSION_PATCH@" )
+
+set (OTSLICED_SWIG_INCLUDE_DIRS "@PACKAGE_OTSLICED_SWIG_INCLUDE_DIRS@")
+set (OTSLICED_PYTHON_MODULE_PATH "@PACKAGE_PYTHON_MODULE_PATH@")
+
+# Our library dependencies (contains definitions for IMPORTED targets)
+include (${CMAKE_CURRENT_LIST_DIR}/otsliced-Targets.cmake)
