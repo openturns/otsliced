@@ -1,6 +1,6 @@
 //                                               -*- C++ -*-
 /**
- *  @brief SlicedInverseRegression
+ *  @brief SlicedInverseRegressionResult
  *
  *  Copyright 2005-2024 Airbus-EDF-IMACS-ONERA-Phimeca
  *
@@ -18,47 +18,44 @@
  *  along with this library.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#ifndef OTSLICED_SLICEDINVERSEREGRESSION_HXX
-#define OTSLICED_SLICEDINVERSEREGRESSION_HXX
+#ifndef OTSLICED_SLICEDINVERSEREGRESSIONRESULT_HXX
+#define OTSLICED_SLICEDINVERSEREGRESSIONRESULT_HXX
 
-#include "otsliced/SlicedInverseRegressionResult.hxx"
+#include "otsliced/otslicedprivate.hxx"
 
-#include <openturns/Sample.hxx>
+#include <openturns/PersistentObject.hxx>
+#include <openturns/StorageManager.hxx>
+#include <openturns/Function.hxx>
 
 namespace OTSLICED
 {
 
 /**
- * @class SlicedInverseRegression
+ * @class SlicedInverseRegressionResult
  *
- * SIR dimension reduction
+ * Result from SIR algorithm 
  */
-class OTSLICED_API SlicedInverseRegression
+class OTSLICED_API SlicedInverseRegressionResult
   : public OT::PersistentObject
 {
   CLASSNAME
 
 public:
   /** Default constructor */
-  SlicedInverseRegression();
+  SlicedInverseRegressionResult();
 
-  SlicedInverseRegression(const OT::Sample & inputSample,
-                          const OT::Sample & outputSample);
+  SlicedInverseRegressionResult(const OT::Matrix & linear,
+                                const OT::Point & center,
+                                const OT::Point & eigenValues);
 
   /** Virtual constructor method */
-  SlicedInverseRegression * clone() const override;
+  SlicedInverseRegressionResult * clone() const override;
 
-  /** Slice number accessor */
-  void setSliceNumber(const OT::UnsignedInteger sliceNumber);
-  OT::UnsignedInteger getSliceNumber() const;
-
-  /** Modes number accessor */
-  void setModesNumber(const OT::UnsignedInteger modesNumber);
-  OT::UnsignedInteger getModesNumber() const;
-
-  void run();
-
-  SlicedInverseRegressionResult getResult() const;
+  OT::Matrix getDirections() const;
+  OT::Point getEigenvalues() const;
+  
+  OT::Function getTransformation() const;
+  OT::Function getInverseTransformation() const;
 
   /** String converter */
   OT::String __repr__() const override;
@@ -70,16 +67,12 @@ public:
   void load(OT::Advocate & adv) override;
 
 private:
-  OT::Sample inputSample_;
-  OT::Sample outputSample_;
+  OT::Matrix directions_;
+  OT::Point center_;
+  OT::Point eigenValues_;
 
-  OT::UnsignedInteger modesNumber_ = 0;
-  OT::UnsignedInteger sliceNumber_ = 10;
-
-  SlicedInverseRegressionResult result_;
-
-}; /* class SlicedInverseRegression */
+}; /* class SlicedInverseRegressionResult */
 
 } /* namespace OTSLICED */
 
-#endif /* OTSLICED_SLICEDINVERSEREGRESSION_HXX */
+#endif /* OTSLICED_SLICEDINVERSEREGRESSIONRESULT_HXX */

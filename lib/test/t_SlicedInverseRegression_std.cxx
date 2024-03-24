@@ -7,8 +7,8 @@ using namespace OTSLICED;
 
 int main()
 {
-  SlicedInverseRegression a;
-  std::cout << a << std::endl;
+  SlicedInverseRegression algo;
+  std::cout << algo << std::endl;
   return 0;
 }
 

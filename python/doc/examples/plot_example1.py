@@ -1,29 +1,22 @@
 """
-Example 1: Axial stressed beam
-==============================
+Example on 2-d data
+===================
 """
 
 # %%
-# This example is a simple beam, restrained at one side and stressed by a traction load F at the other side.
-#
-# Inputs:
-#
-#  - F, Traction load, Normal(75e3, 5e3)
-#  - :math:`sigma`, Axial stress, LogNormal(300, 30)
-#  - D, diameter, 20.0
-#
-# Output: Primary energy savings :math:`G`
-#
-# .. math::
-#
-#     G = \sigma_e -\frac{F}{\pi \frac{D^2}{4} }
-#
+import openturns as ot
+import otsliced
 
 # %%
-import openturns as ot
-import ottemplate
+# Create 2-d data X and 1-d feature Y
+N = 100
+X = ot.Normal([0.0] * 2, [0.1] * 2).getSample(N)
+X += [[-i / (N - 1), 2 * i / (N - 1)] for i in range(N)]
+X = X - X.computeMean()
+f = ot.SymbolicFunction(["x1", "x2"], ["4*(x1+2*x2)+2"])
+Y = f(X) + ot.Normal(0.0, 0.2).getSample(N)
 
-a = ottemplate.MyClass()
-p = ot.Point([2, 3])
-squared_p = a.square(p)
-print(squared_p)
+# %%
+# Run the SIR algorithm
+algo = otsliced.SlicedInverseRegression(X, Y)
+transformation = algo.getResult().getTransformation()

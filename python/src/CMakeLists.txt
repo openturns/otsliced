@@ -79,6 +79,7 @@ endmacro ()
 
 ot_add_python_module( ${PACKAGE_NAME} ${PACKAGE_NAME}_module.i 
                       SlicedInverseRegression.i SlicedInverseRegression_doc.i.in
+                      SlicedInverseRegressionResult.i SlicedInverseRegressionResult_doc.i.in
                     )
 
 

@@ -3,8 +3,10 @@
 ot_add_current_dir_to_include_dirs ()
 
 ot_add_source_file (SlicedInverseRegression.cxx)
+ot_add_source_file (SlicedInverseRegressionResult.cxx)
 
 ot_install_header_file (SlicedInverseRegression.hxx)
+ot_install_header_file (SlicedInverseRegressionResult.hxx)
 
 
 include_directories (${INTERNAL_INCLUDE_DIRS})

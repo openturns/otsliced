@@ -1,0 +1,46 @@
+%feature("docstring") OTSLICED::SlicedInverseRegressionResult
+"Result class for SIR method."
+
+// ---------------------------------------------------------------------
+
+%feature("docstring") OTSLICED::SlicedInverseRegressionResult::getTransformation
+"Transformation function accessor.
+
+Returns
+-------
+transformation : :py:class:`openturns.Function`
+    Transformation function
+"
+
+// ---------------------------------------------------------------------
+
+%feature("docstring") OTSLICED::SlicedInverseRegressionResult::getInverseTransformation
+"Inverse transformation function accessor.
+
+Returns
+-------
+inverseTransformation : :py:class:`openturns.Function`
+    Inverse transformation function
+"
+
+// ---------------------------------------------------------------------
+
+%feature("docstring") OTSLICED::SlicedInverseRegressionResult::getDirections
+"Directions accessor.
+
+Returns
+-------
+directions : :py:class:`openturns.Matrix`
+    Directions matrix
+"
+
+// ---------------------------------------------------------------------
+
+%feature("docstring") OTSLICED::SlicedInverseRegressionResult::getEigenvalues
+"Eigen values accessor.
+
+Returns
+-------
+eigenvalues : :py:class:`openturns.Point`
+    Eigen values
+"

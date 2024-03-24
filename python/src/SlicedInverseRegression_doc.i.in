@@ -1,36 +1,84 @@
 %feature("docstring") OTSLICED::SlicedInverseRegression
-"SlicedInverseRegression class.
-
-Examples
---------
->>> import otsliced
->>> a = otsliced.SlicedInverseRegression()
-
-Notes
------
-Template module class."
-
-// ---------------------------------------------------------------------
-
-%feature("docstring") OTSLICED::SlicedInverseRegression::square
-"Square of a point.
+"SlicedInverseRegression algorithm.
 
 Parameters
 ----------
-point : sequence of float 
-    Input point
+X : :py:class:`openturns.Sample`
+    Input sample
+y : :py:class:`openturns.Sample`
+    Feature sample
 
-Returns
--------
-square : :py:class:`openturns.Point`
-    Square of point
-                  
 Examples
 --------
 >>> import openturns as ot
 >>> import otsliced
->>> a = otsliced.SlicedInverseRegression()
->>> point = ot.Point([1.0, 2.0, 3.0])
->>> a.square(point)
-class=Point name=Unnamed dimension=3 values=[1,4,9]"
+>>> N = 100
+>>> X = ot.Normal([0.0] * 2, [0.1] * 2).getSample(N)
+>>> X += [[-i / (N - 1), 2 * i / (N - 1)] for i in range(N)]
+>>> X = X - X.computeMean()
+>>> f = ot.SymbolicFunction(['x1', 'x2'], ['4*(x1+2*x2)+2'])
+>>> Y = f(X) + ot.Normal(0.0, 0.2).getSample(N)
+>>> algo = otsliced.SlicedInverseRegression(X, Y)
+>>> algo.run()
+>>> transformation = algo.getResult().getTransformation()
+"
 
+// ---------------------------------------------------------------------
+
+%feature("docstring") OTSLICED::SlicedInverseRegression::run
+"Run the algorithm."
+
+// ---------------------------------------------------------------------
+
+%feature("docstring") OTSLICED::SlicedInverseRegression::getResult
+"Accessor to the result.
+
+Returns
+-------
+result : :py:class:`otsliced.SlicedInverseRegressionResult`
+    Result class
+"
+
+// ---------------------------------------------------------------------
+
+%feature("docstring") OTSLICED::SlicedInverseRegression::setSliceNumber
+"Accessor to the number of slices.
+
+Parameters
+----------
+sliceNumber : int
+    Number of slices
+"
+
+// ---------------------------------------------------------------------
+
+%feature("docstring") OTSLICED::SlicedInverseRegression::getSliceNumber
+"Accessor to the number of slices.
+
+Returns
+-------
+sliceNumber : int
+    Number of slices
+"
+
+// ---------------------------------------------------------------------
+
+%feature("docstring") OTSLICED::SlicedInverseRegression::setModesNumber
+"Accessor to the number of modes.
+
+Parameters
+----------
+modesNumber : int
+    Number of modes retained.
+"
+
+// ---------------------------------------------------------------------
+
+%feature("docstring") OTSLICED::SlicedInverseRegression::getModesNumber
+"Accessor to the number of modes.
+
+Returns
+-------
+modesNumber : int
+    Number of modes retained.
+"

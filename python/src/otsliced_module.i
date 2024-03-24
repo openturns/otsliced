@@ -18,6 +18,7 @@
 
 // The new classes
 %include otsliced/otslicedprivate.hxx
+%include SlicedInverseRegressionResult.i
 %include SlicedInverseRegression.i
 
 
