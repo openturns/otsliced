@@ -15,10 +15,9 @@ jobs:
       - name: Upload
         if: ${{ github.ref == 'refs/heads/master' }}
         run: |
-          exit 0
           git clone --depth 1 https://${{ secrets.GH_TOKEN }}@github.com/openturns/openturns.github.io.git /tmp/io
-          mkdir -p /tmp/io/ottemplate/master
-          cp -r html/* /tmp/io/ottemplate/master
+          mkdir -p /tmp/io/otsliced/master
+          cp -r html/* /tmp/io/otsliced/master
           cd /tmp/io
           touch .nojekyll
           git config user.email "support@gh.com"
