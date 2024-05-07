@@ -163,6 +163,7 @@ void SlicedInverseRegression::setModesNumber(const UnsignedInteger modesNumber)
 {
   if (modesNumber_ > inputSample_.getDimension())
     throw InvalidArgumentException(HERE) << "Cannot use more than " <<inputSample_.getDimension() << " modes";
+  throw NotYetImplementedException(HERE) << "Cannot do that yet";
   modesNumber_ = modesNumber;
 }
 

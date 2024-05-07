@@ -4,7 +4,7 @@
 otsliced Module
 =================
 
-otsliced is a module for OpenTURNS
+otsliced is a module for OpenTURNS with SIR method inspired from https://github.com/joshloyal/sliced
 
 More information can found at http://www.openturns.org
 
