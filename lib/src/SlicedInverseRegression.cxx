@@ -82,11 +82,7 @@ void SlicedInverseRegression::run()
     for(UnsignedInteger j = 0; j < inputDimension; ++ j)
       Q(i, j) = inputSample_(i, j);
   Matrix R;
-#if OPENTURNS_VERSION >= 102300
   Q.computeQRInPlace(R);
-#else
-  Q.computeQR(R, false, false); // full, keepintact
-#endif
   Sample Z(size, inputDimension);
   for (UnsignedInteger i = 0; i < size; ++ i)
     for(UnsignedInteger j = 0; j < inputDimension; ++ j)
@@ -100,11 +96,7 @@ void SlicedInverseRegression::run()
   }
   SymmetricMatrix M((zMeans.transpose() * zMeans / size).getImplementation());
   SquareMatrix eigenVectors;
-#if OPENTURNS_VERSION >= 102300
   const Point eigenValues = M.computeEVInPlace(eigenVectors);
-#else
-  const Point eigenValues = M.computeEV(eigenVectors, false); // keepIntact
-#endif
   SquareMatrix eigenVectorsRev(inputDimension);
   Point eigenValuesRev(inputDimension);
   for(UnsignedInteger j = 0; j < inputDimension; ++ j)
